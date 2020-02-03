@@ -10,12 +10,6 @@
 
 ### Setup
 
-#### `.env` requirements (where applicable)
-
-i.e.
-
-- `PORT` - Port Number
-- `MONGODB_URI` - URL to the running mongo instance/db
 
 #### How to initialize/run your application (where applicable)
 
@@ -24,9 +18,13 @@ i.e.
 #### Tests
 
 - How do you run tests?
+`npm test`
 - Any tests of note?
+    "jest --verbose --coverage"
+    "lint": "eslint '**/*.js'"
 - Describe any tests that you did not complete, skipped, etc
 
 #### UML
 
 Link to an image of the UML for your application and response to events
+![uml](http://xyz.com)

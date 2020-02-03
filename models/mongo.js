@@ -7,16 +7,21 @@ class Mongo {
     this.schema = schema ;
   }
     
-  read(_id){
-    if(_id){
-      return this.schema.find({_id});
+  read(name){
+    if(name){
+      console.log('trueeee', name);
+      return this.schema.find({name});
     }else{
+      console.log('falseeeee');
+
       return this.schema.find({});
     }
   }
 
   create(value){
+
     let newValue = new this.schema(value);
+    console.log('new save ' , newValue);
     return newValue.save();
   }
 

@@ -3,7 +3,7 @@
 
 const server = require('./lib/server.js');
 const mongoose = require('mongoose');
-const MONGODB_URI = 'mongodb://http:localhost:27017/lab11';
+const MONGODB_URI = 'mongodb://localhost:27017/lab11';
 
 const mongooseOptions = {
   useNewUrlParser: true ,
@@ -12,5 +12,6 @@ const mongooseOptions = {
   useFindAndModify: true,
 };
 
-mongoose.connect( MONGODB_URI , mongooseOptions);
+mongoose.connect( MONGODB_URI , mongooseOptions).catch(err => console.log(err));
+
 server.start();
