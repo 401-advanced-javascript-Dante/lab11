@@ -5,8 +5,8 @@
 ### Author: Abdulrhman Alharasis
 ### Links and Resources
 
-- [submission PR](http://xyz.com)
-- [ci/cd](http://xyz.com) (GitHub Actions)
+- [submission PR](https://github.com/401-advanced-javascript-Dante/lab11/pull/1)
+- [ci/cd](https://github.com/401-advanced-javascript-Dante/lab11/actions/runs/34416869) (GitHub Actions)
 
 ### Setup
 
@@ -27,4 +27,4 @@
 #### UML
 
 Link to an image of the UML for your application and response to events
-![uml](http://xyz.com)
+![uml](https://i.ibb.co/mvswBDj/lab11.jpg)
