@@ -3,7 +3,7 @@
 
 const server = require('./lib/server.js');
 const mongoose = require('mongoose');
-const MONGODB_URI = 'mongodb://localhost:27017/lab11';
+const MONGODB_URI = 'mongodb://localhost:27017/lab1111';
 
 const mongooseOptions = {
   useNewUrlParser: true ,
