@@ -1,6 +1,5 @@
 'use strict';
 
-// const userSchema = require('./users-schema.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Model = require('./user-model.js');
@@ -8,22 +7,23 @@ let users = {} ;
 const SECRET = 'NoBodyKnow';
 
 
+// check if the user exist in the DB  
+// if not hash his password and save it ;
+
 
 users.save = async function (data){
+  // i thought i need to parse it but am already using express JSON
   let parsedData = data;
-  // console.log('save fffffffffffff');
-  console.log('**************************************' ,typeof parsedData);
+  // search in the DB for the user .
   let scanResult = await Model.read(parsedData.name);
+  // DB will return an array
   let search =scanResult[0].name ;
-  // console.log( 'scan result',scanResult);
-  // console.log('scan name',scanResult[0].name);
-  // console.log(parsedData.name);
-  // console.log('*******************rrr*********', await Model.read(search));
+
   if(!( search === parsedData.name)){
+    // hash the password with bcrypt
     parsedData.password = await bcrypt.hash(parsedData.password , 5);
-    console.log('before return' ,parsedData);
+    // adding the user data to the DB
     await Model.create(parsedData);
-    console.log('create db object');
     return parsedData ;
   }else{
     return parsedData;
@@ -31,21 +31,19 @@ users.save = async function (data){
 };
 
 
+
+// to generate a token by username 
 users.tokenGenerator = async function(data){
   let token = await jwt.sign(data.name , SECRET) ;
-  console.log('tokkken', token);
   return token ;
 };
 
+
+// compare the password with the hashed one
+// if true it will return user name , else will reject it 
 users.basicAuth = async function(user , pass){
-
-
-  console.log('basic auth user',user);
-  console.log('basic auth user',typeof user);
   let fromDB = await Model.read(user);
-  console.log('hi basic Auth', fromDB);
   let check = await bcrypt.compare(pass , fromDB[0].password);
-  console.log('check' , check);
   if(check){
     return fromDB[0];
   }else{
@@ -53,12 +51,11 @@ users.basicAuth = async function(user , pass){
   }
 };
 
+
+// return all data form DB
 users.showAll = async function(){
   let result = Model.read() ;
-  console.log('showall: ', result);
   return result ;
 };
 
 module.exports = users ;
-
-// users.save({name : 'dante' , password: 'dknkjf'});
