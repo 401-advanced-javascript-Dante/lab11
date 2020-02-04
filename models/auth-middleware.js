@@ -6,11 +6,11 @@ const users = require('./users.js');
 
 
 
-module.exports = (req , res , next) => {
+module.exports =async (req , res , next) => {
+
 
   if(!req.headers.authorization){
     next('Get Out Of Here !');
-    return;
   }
 
   let info = req.headers.authorization.split(' ').pop();
@@ -18,10 +18,15 @@ module.exports = (req , res , next) => {
   console.log('before basicAuth', user , password);
   users.basicAuth(user , password)
     .then(result => {
-      req.token = users.tokenGenerator(result);
+      console.log('first then');
+      return users.tokenGenerator(result);
+    }).then(data => {
+      console.log('second then');
+
+      req.token = data;
       next();
     })
-    .catch(err => next('falsy Login !!!'));
+    .catch(err => next('falsy Login !!!', err));
 
 
 };
