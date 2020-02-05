@@ -11,13 +11,19 @@ const SECRET = 'NoBodyKnow';
 // if not hash his password and save it ;
 
 
-users.save = async function (data){
+users.checkAndSave = async function (data){
   // i thought i need to parse it but am already using express JSON
   let parsedData = data;
+  console.log(data);
   // search in the DB for the user .
   let scanResult = await Model.read(parsedData.name);
+  console.log(scanResult);
+
   // DB will return an array
-  let search =scanResult[0].name ;
+  let search;
+  if(scanResult[0]){
+    search =scanResult[0].name ;
+  }
 
   if(!( search === parsedData.name)){
     // hash the password with bcrypt
