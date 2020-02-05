@@ -1,14 +1,17 @@
-# LAB - Class 11
+# LAB - Class 12
 
-## Authentication
+## OAuth
 
 ### Author: Abdulrhman Alharasis
 ### Links and Resources
 
-- [submission PR](https://github.com/401-advanced-javascript-Dante/lab11/pull/1)
+- [submission PR](https://github.com/401-advanced-javascript-Dante/lab11/pull/2)
 - [ci/cd](https://github.com/401-advanced-javascript-Dante/lab11/actions/runs/34416869) (GitHub Actions)
 
 ### Setup
+
+#### `.env` requirements :
+client_secret
 
 
 #### How to initialize/run your application (where applicable)
@@ -27,4 +30,6 @@
 #### UML
 
 Link to an image of the UML for your application and response to events
-![uml](https://i.ibb.co/mvswBDj/lab11.jpg)
+![uml](https://i.ibb.co/xfXxkb1/lab12.jpg)
+
+
