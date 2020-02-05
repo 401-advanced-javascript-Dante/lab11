@@ -17,7 +17,10 @@ users.save = async function (data){
   // search in the DB for the user .
   let scanResult = await Model.read(parsedData.name);
   // DB will return an array
-  let search =scanResult[0].name ;
+  let search;
+  if(scanResult){
+    search =scanResult[0].name ;
+  }
 
   if(!( search === parsedData.name)){
     // hash the password with bcrypt
