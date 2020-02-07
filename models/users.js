@@ -40,7 +40,7 @@ users.checkAndSave = async function (data){
 
 // to generate a token by username 
 users.tokenGenerator = async function(data){
-  let token = await jwt.sign(data.name , SECRET) ;
+  let token = await jwt.sign(data.name , SECRET , {expiresIn: '15m'}) ;
   return token ;
 };
 
@@ -63,5 +63,30 @@ users.showAll = async function(){
   let result = Model.read() ;
   return result ;
 };
+
+
+// bearer authorization method that verifies the token
+users.tokenValidator= async function(token){
+  try {
+    console.log('tokenV try');
+
+    let data = await jwt.verify(token , SECRET);
+    console.log('TV data', data);
+    let searchResult = await Model.read(data);
+    console.log('TV search result ', searchResult);
+
+    if(searchResult[0]){
+      console.log('if true');
+      return searchResult[0];
+    }else{
+      console.log('if false');
+      return 'ターゲットを見つけることができません';
+    }
+
+  }catch(err){
+    return Promise.reject(err); 
+  }
+};
+
 
 module.exports = users ;
