@@ -78,7 +78,8 @@ users.showAll = async function(){
 // bearer authorization method that verifies the token
 users.tokenValidator= async function(token){
   try {
-    console.log('tokenV try');
+    console.log('tokenV try' ,typeof token);
+  
 
     let data = await jwt.verify(token , SECRET);
     console.log('TV data', data);

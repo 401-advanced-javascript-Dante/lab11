@@ -1,6 +1,6 @@
 # LAB - Class 12
 
-## Bearer Authorization
+## Access Control
 
 ### Author: Abdulrhman Alharasis
 ### Links and Resources
@@ -30,6 +30,6 @@ client_secret
 #### UML
 
 Link to an image of the UML for your application and response to events
-![uml](https://i.ibb.co/xzp26P8/DSC-0044.jpg)
+![uml](https://i.ibb.co/tKh26G4/acl.jpg)
 
 
