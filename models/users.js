@@ -46,8 +46,8 @@ users.tokenGenerator = async function(data){
     console.log('tokenGenerator', token);
     return token ;
   }catch(err){
-    console.log('errr')
-    console.error(err)
+    console.log('errr');
+    console.error(err);
     return Promise.reject(err);
   }
 };
