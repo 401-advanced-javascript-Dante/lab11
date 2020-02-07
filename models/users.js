@@ -40,8 +40,16 @@ users.checkAndSave = async function (data){
 
 // to generate a token by username 
 users.tokenGenerator = async function(data){
-  let token = await jwt.sign(data.name , SECRET , {expiresIn: '15m'}) ;
-  return token ;
+  console.log('tokenGenerator');
+  try{
+    let token = await jwt.sign({user: `${data.name}`}, SECRET , {expiresIn: '15m'}) ;
+    console.log('tokenGenerator', token);
+    return token ;
+  }catch(err){
+    console.log('errr')
+    console.error(err)
+    return Promise.reject(err);
+  }
 };
 
 
@@ -49,8 +57,10 @@ users.tokenGenerator = async function(data){
 // if true it will return user name , else will reject it 
 users.basicAuth = async function(user , pass){
   let fromDB = await Model.read(user);
+  console.log('basicAuth read', fromDB);
   let check = await bcrypt.compare(pass , fromDB[0].password);
   if(check){
+    console.log('check => true');
     return fromDB[0];
   }else{
     return Promise.reject ;
@@ -72,7 +82,7 @@ users.tokenValidator= async function(token){
 
     let data = await jwt.verify(token , SECRET);
     console.log('TV data', data);
-    let searchResult = await Model.read(data);
+    let searchResult = await Model.read(data.user);
     console.log('TV search result ', searchResult);
 
     if(searchResult[0]){

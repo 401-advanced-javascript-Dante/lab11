@@ -19,10 +19,12 @@ module.exports =async (req , res , next) => {
   // basic auth will check and compare stored password  
   users.basicAuth(user , password)
     .then(result => {
+      console.log('result mw auth',result);
       // generate a token
       return users.tokenGenerator(result);
     }).then(data => {
       // stick the token to req object
+      console.log('token generated', data);
       req.token = data;
       next();
     })
