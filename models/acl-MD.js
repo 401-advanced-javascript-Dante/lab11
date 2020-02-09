@@ -25,7 +25,7 @@ module.exports = (license => {
           next('SORRY !! You Are Not Invited !!');
         }
       }else{
-        next('userLicense is  not defined');
+        next('userLicense is  not defined , you need to log in first and pass bearer Auth');
         return ;
       }
 
