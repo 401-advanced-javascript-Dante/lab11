@@ -15,13 +15,20 @@ module.exports = (license => {
       }
       let userLicense = req.userName.license ;
         
-      if(userLicense.includes(license)){
-        next();
-        console.log('after next ??');
-        return;
+      if(userLicense){
+        
+        if(userLicense.includes(license)){
+          next();
+          console.log('after next ??');
+          return;
+        }else{
+          next('SORRY !! You Are Not Invited !!');
+        }
       }else{
-        next('SORRY !! You Are Not Invited !!');
+        next('userLicense is  not defined');
+        return ;
       }
+
     }catch(err){
       next(err);
       return;
