@@ -10,7 +10,11 @@ module.exports = (req , res , next)=> {
   }
   console.log('req.he.auth',req.headers.authorization);
   let token = req.headers.authorization.split(' ').pop();
-
+  console.log('req token ====> ' , req.token);
+  if(req.token){
+    console.log('heloo');
+    token = req.token ;
+  }
   console.log('hhhhhhh', token);
   users.tokenValidator(token)
     .then(data => {
