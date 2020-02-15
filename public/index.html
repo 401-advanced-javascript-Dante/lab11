@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+        <div>
+
+            <h1>Welcome Stranger !!</h1>
+            <br>
+            <a id="magicLink" href="#"> let's Go Stranger ?</a>
+        </div>
+
+
+</body>
+
+<script>
+    console.log('index html')
+    let gitHubLink = 'https://github.com/login/oauth/authorize';
+    let linkComponent = {
+        client_id : 'c7b647fd88cc12ee3754',
+        redirect_uri : 'http://localhost:3000/oauth',
+        scope: 'read:user',
+        state: 'Resident_Evil'
+    }
+
+    let smartText = Object.keys(linkComponent).map(val => {
+        // Encodes a text string as a valid component of a Uniform Resource Identifier (URI).
+        return `${val}=` + encodeURIComponent(linkComponent[val]) ;
+    }).join('&');
+
+    console.log(smartText);
+    let smartLink = `${gitHubLink}?${smartText}`;
+    console.log(smartLink);
+    let href = document.getElementById('magicLink');
+    href.setAttribute('href', smartLink);
+</script>
+
+</html>
